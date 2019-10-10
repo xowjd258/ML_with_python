@@ -15,7 +15,7 @@ y_train = torch.LongTensor(xy[:, [-1]]).squeeze()
 class SoftmaxClassifierModel(nn.Module):
     def __init__(self):
         super().__init__()
-        self.linear = nn.Linear(16, 7) # output dimension = 3
+        self.linear = nn.Linear(16, 7) # 소프트맥스 입력 16개 출력 7개 
 
     def forward(self, x):
         return self.linear(x)
