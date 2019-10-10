@@ -5,7 +5,7 @@ import torch.nn.functional as F
 import torch.optim as optim
 
 
-x_train = [[1, 2, 1, 1],
+x_train = [[1, 2, 1, 1], 
            [2, 1, 3, 2],
            [3, 1, 3, 4],
            [4, 1, 5, 5],
@@ -13,7 +13,7 @@ x_train = [[1, 2, 1, 1],
            [1, 2, 5, 6],
            [1, 6, 6, 6],
            [1, 7, 7, 7]]
-y_train = [2, 2, 2, 1, 1, 1, 0, 0]
+y_train = [2, 2, 2, 1, 1, 1, 0, 0]# 카테고리 분류
 x_train = torch.FloatTensor(x_train)
 y_train = torch.LongTensor(y_train)
     
@@ -28,8 +28,8 @@ nb_epochs = 1000
 for epoch in range(nb_epochs + 1):
 
     # cost
-    hypothesis = F.softmax(x_train.matmul(W) + b, dim=1) # or .mm or @
-    y_one_hot = torch.zeros_like(hypothesis)
+    hypothesis = F.softmax(x_train.matmul(W) + b, dim=1) # or .mm or @ , softmax라고 부른다 입력이 네개고 출력이 세개
+    y_one_hot = torch.zeros_like(hypothesis)  # [001] [100] 형태로 표현하는 함수
     y_one_hot.scatter_(1, y_train.unsqueeze(1), 1)
     cost = (y_one_hot * -torch.log(F.softmax(hypothesis, dim=1))).sum(dim=1).mean()
 
