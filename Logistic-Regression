@@ -3,33 +3,34 @@
 
 import torch.nn as nn
 import torch.nn.functional as F
-import torch.optim as optim
+import torch.optim as optim #optimizer
 
 
-x_data = [[1, 2], [2, 3], [3, 1], [4, 3], [5, 3], [6, 2]]
-y_data = [[0], [0], [0], [1], [1], [1]]
+x_data = [[1, 2], [2, 3], [3, 1], [4, 3], [5, 3], [6, 2]] #데이터를 받자!(x는 공부한 시간, y는 공부결과)
+y_data = [[0], [0], [0], [1], [1], [1]] #예를 들어 좌표(1,2)는 0의 값이다 (0불합격 1 합격)
 x_train = torch.FloatTensor(x_data)
 y_train = torch.FloatTensor(y_data)
 
 # initialize
 W = torch.zeros((2, 1), requires_grad=True)
-b = torch.zeros(1, requires_grad=True)
+b = torch.zeros(1, requires_grad=True) 
 # optimizer
-optimizer = optim.SGD([W, b], lr=1)
+optimizer = optim.SGD([W, b], lr=1) #lr은 러닝레이트, 배움주기라고 생각하자
 
 nb_epochs = 1000
 for epoch in range(nb_epochs + 1):
 
-    # cost
-    hypothesis = torch.sigmoid(x_train.matmul(W) + b) # or .mm or @
+    # cost, w1x1+w2x2+b를 계산할 때 행렬의 곱으로 계산한다 (1행2열)*(2행1열)+b
+    hypothesis = torch.sigmoid(x_train.matmul(W) + b) # or .mm or @ #함수 sigmoid
     cost = (-(y_train * torch.log(hypothesis)
             + (1 - y_train) * torch.log(1 - hypothesis)).mean())
 
     # gradient descent
-    optimizer.zero_grad()
+    optimizer.zero_grad() #미분
     cost.backward()
-    optimizer.step()
+    optimizer.step() #미분값으로 한발자국 이동
 
     # check progress
-    if epoch % 100 == 0:
+    if epoch % 100 == 0: #100번에 한 번씩 출력
         print(f'Epoch {epoch:4d}/{nb_epochs} Cost: {cost.item():.6f}')
+        
