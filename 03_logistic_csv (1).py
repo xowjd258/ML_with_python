@@ -21,7 +21,7 @@ class BinaryClassifier(nn.Module):
     def forward(self, x):
         return self.sigmoid(self.linear(x))
 
-model = BinaryClassifier()
+model = BinaryClassifier() #8개의 숫자를 받아서 리니어를 통과시키고 시그모이드를 통과시킨다
 
 
 # optimizer lr = 10 vs 1 vs 0.1 vs 0.01
@@ -35,13 +35,13 @@ for epoch in range(nb_epochs + 1):
     cost = F.binary_cross_entropy(hypothesis, y_train)
 
     # gradient descent
-    optimizer.zero_grad()
-    cost.backward()
-    optimizer.step()
+    optimizer.zero_grad() #초기화
+    cost.backward() #미분값계산
+    optimizer.step() #한칸이동
 
     # accuracy
-    prediction = (hypothesis >= torch.FloatTensor([0.5]))
-    correct_prediction = (prediction.float() == y_train)
+    prediction = (hypothesis >= torch.FloatTensor([0.5])) #0.5보다 큰지 작은지를 판단하기위해 0.5보다 크니작니
+    correct_prediction = (prediction.float() == y_train) #
     accuracy = correct_prediction.sum().item() / len(correct_prediction)
     
 
