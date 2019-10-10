@@ -21,7 +21,7 @@ y_train = torch.LongTensor(y_train)
 class SoftmaxClassifierModel(nn.Module):
     def __init__(self):
         super().__init__()
-        self.linear = nn.Linear(4, 3) # output dimension = 3
+        self.linear = nn.Linear(4, 3) # output dimension = 3 입력이 4차원 세개중에 하나를 맞춰야하는출력
 
     def forward(self, x):
         return self.linear(x)
@@ -36,11 +36,11 @@ nb_epochs = 1000
 for epoch in range(nb_epochs + 1):
 
     # cost
-    hypothesis = model(x_train)
-    cost = F.cross_entropy(hypothesis, y_train)
+    hypothesis = model(x_train)# x값을 통과시켰을 때 나오는 함수 ///예측하고
+    cost = F.cross_entropy(hypothesis, y_train)# 코스트 계산함
 
     # gradient descent
-    optimizer.zero_grad()
+    optimizer.zero_grad() 
     cost.backward()
     optimizer.step()
 
