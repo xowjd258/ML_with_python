@@ -1,0 +1,23 @@
+
+class Person:
+	
+	def __init__(self, name, age):
+		int(age)
+		self.name = name
+		self.age = age
+		
+		
+	def aboutMe(self):
+		print "나는 부모 클래스 입니다."
+class student(Person):
+	school = "goorm school"
+	def aboutMe(self):
+		print("%s is name "%self.name )
+		print("%d is age"%self.age)
+		
+cs=Person("김태정",30)
+cs.aboutMe()
+
+cs2=student("문영서",31)
+cs2.aboutMe()
+	
