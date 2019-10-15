@@ -1,0 +1,21 @@
+# -*- coding: utf-8 -*-
+# UTF-8 encoding when using korean
+
+class Member:
+	
+	def __init__(self,id,password): #초기값 선언
+		print("변경전 아이디 %d" % id ) # 변수를 print 함수에 넣을때에는 "(%d" % 변수"의 형식을 취한다
+		print("아이디입력")
+		self.id = input() #id 변수의 초기값을 input으로 받아 새로입력
+		print("비밀번호입력")
+		self.password = input() #password 변수의 초기값을 input으로 받아 새로입력
+		print("새로운 인스턴스가 생김")
+		
+		
+		
+		
+	def getId(self):
+		print(self.id , self.password) #위의 초기값을 받아올 때는 self.변수 를 한다
+
+MyId=Member(3019, 2017) #__init__을 설정함으로써 바로 변수를 때려 넣을 수 있다. 
+MyId.getId()#결과 출력
