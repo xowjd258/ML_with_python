@@ -29,7 +29,7 @@ if device == 'cuda':
 # parameters
 learning_rate = 0.001
 training_epochs = 15
-batch_size = 100
+batch_size = 100 #각 배치사이즈가 100
 
 # MNIST dataset
 mnist_train = dsets.MNIST(root='MNIST_data/',
@@ -56,15 +56,15 @@ data_loader = torch.utils.data.DataLoader(dataset=mnist_train,
 linear1 = torch.nn.Linear(784, 256, bias=True)
 linear2 = torch.nn.Linear(256, 256, bias=True)
 linear3 = torch.nn.Linear(256, 10, bias=True)
-relu = torch.nn.ReLU()
+relu = torch.nn.ReLU()#액티베이션 함수 (시그모이드를 대체할 수 있는 모든 함수)
 
 # Initialization
-torch.nn.init.normal_(linear1.weight)
-torch.nn.init.normal_(linear2.weight)
-torch.nn.init.normal_(linear3.weight)
+torch.nn.init.normal_(linear1.weight)# 초기값을 부여하고 싶다 어떤초기값? 처음에 함수 그릴 때 어떻게 그릴꺼니?
+torch.nn.init.normal_(linear2.weight)#가우시안 랜덤분포로 초기값을 주겠다
+torch.nn.init.normal_(linear3.weight)#초기값이 좋으면 겁나빠르게 잡을 수 있다! 일반적으로 노말을 쓰는데 수업시간 밖
 
 # model
-model = torch.nn.Sequential(linear1, relu, linear2, relu, linear3).to(device)
+model = torch.nn.Sequential(linear1, relu, linear2, relu, linear3).to(device) # 내 모델은 토치.nn.시퀀셜로 만든다
 
 
 # In[5]:
