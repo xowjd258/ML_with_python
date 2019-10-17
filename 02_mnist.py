@@ -14,12 +14,12 @@ import random
 # In[2]:
 
 
-device = 'cuda' if torch.cuda.is_available() else 'cpu'
+device = 'cuda' if torch.cuda.is_available() else 'cpu' #cuda사용
 
 # for reproducibility
-random.seed(777)
+random.seed(777)#난수의 시작점을 고정한다. 정하는이유? 망했을때 다시돌려서 확인하기 위함
 torch.manual_seed(777)
-if device == 'cuda':
+if device == 'cuda': #쿠다가 있다면 돌아가고 없으면 
     torch.cuda.manual_seed_all(777)
 
 
@@ -52,7 +52,7 @@ data_loader = torch.utils.data.DataLoader(dataset=mnist_train,
 
 
 # MNIST data image of shape 28 * 28 = 784
-linear = torch.nn.Linear(784, 10, bias=True).to(device)
+linear = torch.nn.Linear(784, 10, bias=True).to(device)# .to(device)가 알아서 gpu인지 cpu인지 판단해줌(^오^)
 
 # define cost/loss & optimizer
 criterion = torch.nn.CrossEntropyLoss().to(device)    # Softmax is internally computed.
@@ -86,7 +86,7 @@ print('Learning finished')
 # Test the model using test sets
 
 
-# In[10]:
+# In[10]: #테스트라인
 
 
 with torch.no_grad():
