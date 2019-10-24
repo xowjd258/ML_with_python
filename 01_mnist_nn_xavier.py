@@ -62,7 +62,7 @@ relu = torch.nn.ReLU()
 # In[5]:
 
 
-# xavier initialization,유일하게 바뀐부분, 이거 했더니 잘되더라
+# xavier initialization,유일하게 바뀐부분, 이거 했더니 잘되더라,초기화 기법. 어떻게 초기화하냐에 따라 결과값이 아예안나오기도, 잘나오기도 
 torch.nn.init.xavier_uniform_(linear1.weight)
 torch.nn.init.xavier_uniform_(linear2.weight)
 torch.nn.init.xavier_uniform_(linear3.weight)
